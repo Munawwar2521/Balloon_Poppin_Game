@@ -1,0 +1,386 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #4facfe, #00f2fe);
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+/* ✅ Background Animation */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+
+/* ✅ Improved Header Layout */
+#header {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    margin-top: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    text-align: center;
+}
+
+
+/* ✅ Individual Box Styling */
+#header div {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* ✅ Color Coding for Better Visibility */
+#score {
+    color: #00ff00;
+}
+
+/* ✅ Target Color Glow Effect */
+#target-color {
+    color: #ffcc00;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+
+#lives {
+    color: #ff4444;
+}
+
+
+#level {
+    color: #00bfff;
+}
+
+/* ✅ Mobile Optimization */
+@media (max-width: 768px) {
+    #header {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        text-align: center;
+        font-size: 1rem;
+        padding: 10px;
+        width: 90%;
+    }
+
+    #header div {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 8px;
+        border-radius: 8px;
+    }
+}
+
+
+
+/* ✅ Star Effect on Correct Balloon Click */
+@keyframes starEffect {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.star {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('Images/A_star.png') no-repeat center center;
+    background-size: contain;
+    animation: starEffect 1s ease-out;
+    pointer-events: none;
+
+}
+
+
+/* ✅ Game Container */
+#game-container {
+    position: relative;
+    width: 90vw;
+    height: 75vh;
+    overflow: hidden;
+    border: 2px solid white;
+    margin-top: 15px;
+    background-color: #333;
+}
+
+/* ✅ Balloons Styling */
+.balloon {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 70px;
+    border-radius: 50% 50% 60% 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: floatUp 5s linear infinite;
+}
+
+.balloon::after {
+    content: "🎈";
+    position: absolute;
+    bottom: -10px;
+    font-size: 20px;
+}
+
+
+
+
+/* ✅ Smooth Balloon Floating Animation */
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-110vh) rotate(5deg);
+    }
+}
+
+
+/* ✅ Start Button */
+#start-button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#start-button:hover {
+    background-color: #0056b3;
+}
+
+#start-button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+/* ✅ Mobile-Friendly Adjustments */
+@media (max-width: 768px) {
+    #header {
+        font-size: 1rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #game-container {
+        width: 95vw;
+        height: 60vh;
+        border-width: 1px;
+        margin-top: 10px;
+
+    }
+
+    .balloon {
+        width: 30px;
+        height: 45px;
+    }
+
+    #start-button {
+        font-size: 1rem;
+        padding: 8px 16px;
+        width: 80%;
+        max-width: 250px;
+    }
+
+}
+
+/* ✅ Power-Ups Styling */
+#power-ups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    width: 50%;
+    margin: auto;
+    padding-bottom: 10px;
+}
+
+#power-ups button {
+    font-size: 12px;
+    padding: 8px;
+    ;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#power-ups button:hover {
+    background-color: #666;
+}
+
+#power-ups button:disabled {
+    background-color: #222;
+    cursor: not-allowed;
+}
+
+
+@media (max-width: 100px) {
+    #header {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ✅ Start Screen Styling */
+#start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('Images/balloon-bg.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 20px;
+}
+
+#start-screen h1 {
+    font-size: 2rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+#start-screen p {
+    font-size: 1.2rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#start-button {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    border-radius: 10px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#start-button:hover {
+    background-color: #cc0000;
+}
+
+/* ✅ Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    .header {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        padding: 8px;
+        width: 90%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .header div {
+        padding: 6px;
+        font-size: 14px;
+        /* ✅ Smaller Font for Mobile */
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+
+
+
+    /* Game Container Ko Adjust Karna */
+    #game-container {
+        width: 95%;
+        height: auto;
+        min-height: 400px;
+        margin: auto;
+    }
+
+    /* Start Screen Adjust */
+    #start-screen {
+        width: 90%;
+        max-width: 350px;
+        padding: 15px;
+        margin: auto;
+        text-align: center;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+
+
+    #start-screen h1 {
+        font-size: 1.5rem;
+    }
+
+    #start-screen p {
+        font-size: 1rem;
+    }
+
+    #start-button {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #power-ups {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 5px;
+        width: 50%;
+        margin: 5px;
+        padding-bottom: 50px;
+    }
+}
